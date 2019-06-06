@@ -18,6 +18,12 @@ from django.urls import include, path
 from rest_framework import routers
 from users import views
 
+
+# TODO: Do not allow to clients to see users or to change them!!!
+# TODO: Add admin page
+# TODO: Login & Logout urls must be servied via RESTapi.
+# This api serves for session authentication via WEB!!!
+
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 

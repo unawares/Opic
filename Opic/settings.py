@@ -144,6 +144,13 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
+
+# TODO: At registration level password must be written twice:
+# Password / Password Confirmation
+# TODO: NO NEED TO REDIRECT!!!
+# TODO: Remove pagination. We do not need to paginate ALL EXISTING VIEWS!!!
+# TODO: For temporary: add console backend
+
 SITE_ID = 1
 
 ACCOUNT_EMAIL_REQUIRED = True
