@@ -145,9 +145,9 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-# TODO: At registration level password must be written twice:
+# TODO: At registration level password must be written twice: done
 # Password / Password Confirmation
-# TODO: NO NEED TO REDIRECT!!!
+# TODO: NO NEED TO REDIRECT!!! done
 # TODO: Remove pagination. We do not need to paginate ALL EXISTING VIEWS!!!
 # TODO: For temporary: add console backend
 
@@ -155,16 +155,12 @@ SITE_ID = 1
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_UNIQUE_EMAIL = True
 
 
-LOGIN_REDIRECT_URL = 'home'
-ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = ''
+ACCOUNT_LOGOUT_REDIRECT_URL = ''
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
-}
