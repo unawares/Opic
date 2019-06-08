@@ -14,24 +14,29 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include, path
-from rest_framework import routers
-from rest_framework.views import APIView
+from django.urls import include, path, re_path
+from rest_auth.registration.views import VerifyEmailView
+from allauth.account.views import confirm_email
 from users import views
 
-
-# TODO: Do not allow to clients to see users or to change them!!! done
-# TODO: Add admin page done
-# TODO: Login & Logout urls must be servied via RESTapi.
-# This api serves for session authentication via WEB!!!
-
-router = routers.DefaultRouter()
-router.register(r'user', views.UserViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('admin/',admin.site.urls),
-    path('', include(router.urls)),
-    path('accounts/', include('allauth.urls')),
+    path('users/', include('users.urls')),
+    path('auth/', include([
+        path('', include('rest_auth.urls')),
+        re_path(r'registration/account-confirm-email/', VerifyEmailView.as_view(),
+            name='account_email_verification_sent'),
+
+        ########################
+        # TODO: return template where post request made to the url above with post paramer: 'key'
+        re_path(r'registration/account-confirm-email/(?P<key>[-:\w]+)/', VerifyEmailView.as_view(),
+            name='account_confirm_email'),
+        ########################
+        
+        path('registration/', include('rest_auth.registration.urls')),
+    ])),
+    # path('accounts/', include('allauth.urls')),
 ]

@@ -3,12 +3,10 @@ from django.db import models
 from .managers import CustomUserManager
 
 
-# TODO: Change user. This user model requires username. We need only email and password
-
 class CustomUser(AbstractUser):
 
     username = None
-    email = models.EmailField('email address', unique=True)
+    email = models.EmailField('Email address', unique=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

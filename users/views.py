@@ -3,11 +3,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import UserSerializer
 from rest_framework import authentication, permissions
-# TODO: UserViewSet shows list of user. Remove it.
-# User must see only its own profile, not others
 
 
-class UserViewSet(APIView):
+class UserView(APIView):
     """
     API endpoint that allows users to be viewed or edited.
     """
@@ -21,7 +19,3 @@ class UserViewSet(APIView):
 
     def put(self):
         pass
-
-    @classmethod
-    def get_extra_actions(cls):
-        return []
