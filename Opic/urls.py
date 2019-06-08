@@ -13,24 +13,25 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
+from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
+from rest_framework.views import APIView
 from users import views
 
 
-# TODO: Do not allow to clients to see users or to change them!!!
-# TODO: Add admin page
+# TODO: Do not allow to clients to see users or to change them!!! done
+# TODO: Add admin page done
 # TODO: Login & Logout urls must be servied via RESTapi.
 # This api serves for session authentication via WEB!!!
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
+router.register(r'user', views.UserViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
+    path('admin/',admin.site.urls),
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('accounts/', include('allauth.urls')),
 ]
